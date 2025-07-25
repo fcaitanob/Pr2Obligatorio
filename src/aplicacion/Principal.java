@@ -15,7 +15,8 @@ public class Principal {
 	//-------------------------------------
 	public static void mostrarMenu() {
 		
-        System.out.println("Menú principal-----------------------\n");
+        System.out.println("Menú principal (v1)");
+        System.out.println("-------------------");
         System.out.println("1. Listar alumnos");
         System.out.println("2. Listar administradores");
         System.out.println("3. Consultar alumno");
