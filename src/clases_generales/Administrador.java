@@ -27,6 +27,8 @@ public class Administrador extends Persona {
     // Por eso se usa este método y no el agregarAlumno 
     // (que vuelve a llamar a agregarAdministrador
     //---------------------------------------------------------------------
+    // Esto no se usa, el alta de la relación alumano-administrador se hace desde
+    // la fachada
 	public boolean agregarAlumnoDesdeAlumno(Alumno a) {
         if (secAlumnos.size() < MAX_ALUMNO) {
             secAlumnos.add(a);
@@ -40,7 +42,9 @@ public class Administrador extends Persona {
 	public boolean agregarAlumno(Alumno a) {
         if (secAlumnos.size() < MAX_ALUMNO) {
             secAlumnos.add(a);
-            a.agregarAdministrador(this);
+            // Esto que sigue no va. El alta de la relación alumno-administrador se hace
+            // desde la fachada
+            // a.agregarAdministrador(this); 
             return true;
         } else {
             System.out.println("No se puede agregar más de " + MAX_ALUMNO + " alumnos.");
