@@ -1,19 +1,51 @@
 package aplicacion;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import fachada_logica.FachadaLogica;
+import clases_generales.*;
 
 
 public class Principal {
 
 	// Crea atributo de conexión con el modelo utilizando una fachada
 	// falta hacer...
+	public static FachadaLogica fl = new FachadaLogica();
 	static Scanner scan = new Scanner(System.in);
 
 
+	//----------------------------------------
+	// Inicializar objetos y cargar a mano
+	//----------------------------------------
+	public static void inicializarSinBD() {
+		
+        // Alta de alumnos internos 
+        fl.altaAlumnoInterno(111, "nombre uno", "vegetariano");
+		
+		// Alta alumnos externos
+        fl.altaAlumnoExterno(222, "nombre dos", "futbol");
+		
+		// Alta de administradores
+        fl.altaAdministrador(99999999);
+
+
+		// Alta de administradores x alumno
+        fl.asignarAlumnoAAdministrador(111, 99999999);
+        fl.asignarAlumnoAAdministrador(222, 99999999);
+		
+		
+	}
+
+	
+	
+	
 	//-------------------------------------
 	// Texto menu
 	//-------------------------------------
 	public static void mostrarMenu() {
+		
+		inicializarSinBD();
 		
         System.out.println("Menú principal (v1)");
         System.out.println("-------------------");
@@ -46,8 +78,10 @@ public class Principal {
 			opcion = scan.nextInt();
 			switch (opcion) {
 			case 1: 
+				fl.mostrarAlumnos();
 				break;
 			case 2: 
+				fl.mostrarAdministradores();
 				break;
 			case 3: 
 				break;
