@@ -46,13 +46,23 @@ public class FachadaLogica {
         return li;
     }
     
-    public void calcularCuotasTodos() {
+    public void calcularCuotasTodosNOUSAR() {
     	
     	// recorro el hashmap y calculo la cuota para cada alumno.
     	for(Map.Entry<Integer, Alumno> entrada : alumnos.getTablaAlumnos().entrySet()) {
     		entrada.getValue().calculoCuota();
     	}
     }
+
+    public void calcularCuotasTodos() {
+    	
+    	// recorro el hashmap y calculo la cuota para cada alumno.
+    	for(Alumno entrada : alumnos.getTablaAlumnos().values()) {
+    		entrada.calculoCuota();
+    	}
+    }
+
+    
     
     public boolean existeAlumno(int ci) {
         return alumnos.consulta(ci);
