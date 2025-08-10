@@ -19,32 +19,10 @@ public class Administrador extends Persona {
 	}
 
 
-    //---------------------------------------------------------------------
-    // Este método es para el caso de una asignación de administrador a alumno.
-    // Ahí, además de agregar el administrador en alumno, se debe agregar el
-    // alumno en el Administrador.
-    // Pero no se debe agregar en alumno ya que sino queda un loop.
-    // Por eso se usa este método y no el agregarAlumno 
-    // (que vuelve a llamar a agregarAdministrador
-    //---------------------------------------------------------------------
-    // Esto no se usa, el alta de la relación alumano-administrador se hace desde
-    // la fachada
-	public boolean agregarAlumnoDesdeAlumno(Alumno a) {
-        if (secAlumnos.size() < MAX_ALUMNO) {
-            secAlumnos.add(a);
-            return true;
-        } else {
-            System.out.println("No se puede agregar más de " + MAX_ALUMNO + " alumnos.");
-            return false;
-        }
-    }
 
 	public boolean agregarAlumno(Alumno a) {
         if (secAlumnos.size() < MAX_ALUMNO) {
             secAlumnos.add(a);
-            // Esto que sigue no va. El alta de la relación alumno-administrador se hace
-            // desde la fachada
-            // a.agregarAdministrador(this); 
             return true;
         } else {
             System.out.println("No se puede agregar más de " + MAX_ALUMNO + " alumnos.");
@@ -53,7 +31,7 @@ public class Administrador extends Persona {
     }
 
     public void mostrarAlumnos() {
-        System.out.println("Administrador CI: " + ci + " tiene los siguientes alumnos:");
+        System.out.println("Administrador CI: " + this.getCi() + " tiene los siguientes alumnos:");
         for (Alumno a : secAlumnos) {
             System.out.println(a);
         }
@@ -62,7 +40,7 @@ public class Administrador extends Persona {
     @Override
     public String toString() {
     	String texto = "";
-    	texto += "Administrador [CI=" + ci + ", Cantidad de alumnos=" + secAlumnos.size() + "]\n";
+    	texto += "Administrador [CI=" + this.getCi() + ", Cantidad de alumnos=" + secAlumnos.size() + "]\n";
     	for (Alumno a : secAlumnos) {
     		texto += "*";
             texto += a.toString();
