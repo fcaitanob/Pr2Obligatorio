@@ -46,14 +46,6 @@ public class FachadaLogica {
         return li;
     }
     
-    public void calcularCuotasTodosNOUSAR() {
-    	
-    	// recorro el hashmap y calculo la cuota para cada alumno.
-    	for(Map.Entry<Integer, Alumno> entrada : alumnos.getTablaAlumnos().entrySet()) {
-    		entrada.getValue().calculoCuota();
-    	}
-    }
-
     public void calcularCuotasTodos() {
     	
     	// recorro el hashmap y calculo la cuota para cada alumno.
@@ -75,7 +67,19 @@ public class FachadaLogica {
     public void mostrarAlumnos() {
         alumnos.mostrarTodos();
     }
+    
+    public void altaAlumnoExterno(int ci, String nombre, String hobby) {
+        Alumno a = new Externo(ci, nombre, hobby);
+        alumnos.alta(a);
+        
+    }
 
+    public void altaAlumnoInterno(int ci, String nombre, String regimen) {
+        Alumno a = new Interno(ci, nombre, regimen);
+        alumnos.alta(a);
+    }
+
+    
 	//----------------------------------
     // Operaciones con administradores
 	//----------------------------------
@@ -100,6 +104,11 @@ public class FachadaLogica {
         administradores.mostrarTodos();
     }
 
+    public void altaAdministrador(int ci) {
+        Administrador admin = new Administrador(ci);
+        administradores.alta(admin);
+    }
+	
 	//----------------------------------
     // Otros
 	//----------------------------------
@@ -117,26 +126,30 @@ public class FachadaLogica {
         }
     }
 	
-	//---------------------------------------------------
-    // Interacción con modelo para que la fachada
-    // sea el único punto de control con la aplicación
-	//----------------------------------------------------
+	//----------------------------------------
+	// Inicializar objetos y cargar a mano
+	//----------------------------------------
+	public void inicializarSinBD() {
+		
+        // Alta de alumnos internos 
+        altaAlumnoInterno(111, "nombre uno", "vegetariano");
+		
+		// Alta alumnos externos
+        altaAlumnoExterno(222, "nombre dos", "futbol");
+		
+		// Alta de administradores
+        altaAdministrador(99999999);
 
-    public void altaAlumnoExterno(int ci, String nombre, String hobby) {
-        Alumno a = new Externo(ci, nombre, hobby);
-        alumnos.alta(a);
-        
-    }
 
-    public void altaAlumnoInterno(int ci, String nombre, String regimen) {
-        Alumno a = new Interno(ci, nombre, regimen);
-        alumnos.alta(a);
-    }
+		// Alta de administradores x alumno
+        asignarAlumnoAAdministrador(111, 99999999);
+        asignarAlumnoAAdministrador(222, 99999999);
+		
+		
+	}
 
-    public void altaAdministrador(int ci) {
-        Administrador admin = new Administrador(ci);
-        administradores.alta(admin);
-    }
-	
+
+
+    
 	
 }
