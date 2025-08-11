@@ -30,6 +30,8 @@ public class Principal {
         System.out.println("2. Listar administradores");
         System.out.println("3. Consultar alumno");
         System.out.println("4. Alta alumno externo");
+        System.out.println("5. Imprimir controles (uno bien y uno mal)");
+        
         
         System.out.println("90. Fin\n");
 		
@@ -63,6 +65,10 @@ public class Principal {
 			case 3: 
 				break;
 			case 4: 
+				break;
+			case 5: 
+				fl.prtDocControl(111, 99999999);
+				fl.prtDocControl(111, 88888888);
 				break;
 			case 90:
 				System.out.println("Fin del programa");
