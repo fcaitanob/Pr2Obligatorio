@@ -10,19 +10,19 @@ public abstract class Alumno extends Persona {
 	private float cuotaMensual;
 	private float cuotaReal;
 
-	private ArrayList<Administrador> secAdministradores;
+	private ArrayList<AdmControlaAlu> secAdmControlaAlu;
     public static final int MAX_ADMINISTRADOR = 3;
 
     
 	
-	public ArrayList<Administrador> getSecAdministradores() {
-		return secAdministradores;
+	public ArrayList<AdmControlaAlu> getSecAdmControlaAlu() {
+		return secAdmControlaAlu;
 	}
 
 	public Alumno(int ci, String nombre) {
 		super(ci);
 		this.nombre = nombre;
-		this.secAdministradores = new ArrayList<>();
+		this.secAdmControlaAlu = new ArrayList<>();
 	}
 
 	public String getNombre() {
@@ -72,19 +72,18 @@ public abstract class Alumno extends Persona {
 		String texto;
 		texto = super.toString() ;
 		texto += "Alumno [nombre=" + getNombre() + "]\n";
-		texto += "SecAdministradores cant: " + this.getSecAdministradores().size() + "\n";
+		texto += "SecAdministradores cant: " + this.getSecAdmControlaAlu().size() + "\n";
 		return texto;
 	}
 	
 	
-	public boolean agregarAdministrador(Administrador a) {
-        if (secAdministradores.size() < MAX_ADMINISTRADOR) {
-            secAdministradores.add(a);
-            a.agregarAlumnoDesdeAlumno(this);
+	public boolean agregarAdmControlaAlu(AdmControlaAlu c) {
+        if (secAdmControlaAlu.size() < MAX_ADMINISTRADOR) {
+            secAdmControlaAlu.add(c);
             return true;
         } else {
             System.out.println("No se puede agregar más de " + MAX_ADMINISTRADOR + " administradores.");
-            System.out.println("...ciAdm: " + a.getCi() + " ciAlu: " + this.getCi());
+            System.out.println("...ciAdm: " + c.getAlu().getCi() + " ciAlu: " + this.getCi());
             return false;
         }
     }
