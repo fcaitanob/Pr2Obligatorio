@@ -28,8 +28,8 @@ public class Principal {
         System.out.println("-------------------");
         System.out.println("1. Listar alumnos");
         System.out.println("2. Listar administradores");
-        System.out.println("3. Consultar alumno");
-        System.out.println("4. Alta alumno externo");
+        System.out.println("3. Consultar alumno (SIN IMPLEMENTAR)");
+        System.out.println("4. Alta alumno externo (SIN IMPLEMENTAR)");
         System.out.println("5. Imprimir controles (uno bien y uno mal)");
         
         
