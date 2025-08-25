@@ -9,7 +9,8 @@ public class Principal {
 
 	// Crea atributo de conexión con el modelo utilizando una fachada
 	// falta hacer...
-	public static FachadaLogica fl = new FachadaLogica();
+	private FachadaLogica fl = new FachadaLogica();
+	private MenuPpal mp = new MenuPpal(fl);
 	static Scanner scan = new Scanner(System.in);
 
 
@@ -22,7 +23,7 @@ public class Principal {
 	//-------------------------------------
 	public static void mostrarMenu() {
 		
-		fl.inicializarSinBD();
+		//fl.inicializarSinBD();
 		
         System.out.println("Menú principal (v1)");
         System.out.println("-------------------");
@@ -47,10 +48,16 @@ public class Principal {
 	// Menú ppal
 	//-----------------------------------------
 	public static void main(String[] args) {
-		// Cargo objetos desde la BD
-		//inicializar();
+		// Cargo objetos
+		Principal ppal = new Principal();
+		ppal.fl.inicializarSinBD();
+		ppal.mp.muestroMenu();
+		System.out.println("Estoy en el main de clase Principal");
 
-		//Menú principal
+		
+		
+		//Menú principal - programación para consola
+		/*
 		int opcion = 0;
 		do {
 			mostrarMenu();
@@ -81,6 +88,7 @@ public class Principal {
 		} while (opcion != 90);
 
 		scan.close();
+		*/
 
     }	
 
