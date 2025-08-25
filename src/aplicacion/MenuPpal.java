@@ -76,9 +76,4 @@ public class MenuPpal {
     }
 
 	
-	
-	public static void main(String[] args) {
-		MenuPpal menu = new MenuPpal();
-		menu.muestroMenu();
-	}
 }

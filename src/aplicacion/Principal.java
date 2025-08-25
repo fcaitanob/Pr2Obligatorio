@@ -1,49 +1,14 @@
 package aplicacion;
 
-import java.util.Scanner;
-
 import fachada_logica.FachadaLogica;
-
 
 public class Principal {
 
 	// Crea atributo de conexión con el modelo utilizando una fachada
-	// falta hacer...
 	private FachadaLogica fl = new FachadaLogica();
 	private MenuPpal mp = new MenuPpal(fl);
-	static Scanner scan = new Scanner(System.in);
 
 
-
-	
-	
-	
-	//-------------------------------------
-	// Texto menu
-	//-------------------------------------
-	public static void mostrarMenu() {
-		
-		//fl.inicializarSinBD();
-		
-        System.out.println("Menú principal (v1)");
-        System.out.println("-------------------");
-        System.out.println("1. Listar alumnos");
-        System.out.println("2. Listar administradores");
-        System.out.println("3. Consultar alumno (SIN IMPLEMENTAR)");
-        System.out.println("4. Alta alumno externo (SIN IMPLEMENTAR)");
-        System.out.println("5. Imprimir controles (uno bien y uno mal)");
-        
-        
-        System.out.println("90. Fin\n");
-		
-	}
-
-	
-	
-	
-	
-	
-	
 	//-----------------------------------------
 	// Menú ppal
 	//-----------------------------------------
@@ -53,44 +18,6 @@ public class Principal {
 		ppal.fl.inicializarSinBD();
 		ppal.mp.muestroMenu();
 		System.out.println("Estoy en el main de clase Principal");
-
-		
-		
-		//Menú principal - programación para consola
-		/*
-		int opcion = 0;
-		do {
-			mostrarMenu();
-			opcion = scan.nextInt();
-			switch (opcion) {
-			case 1: 
-				fl.mostrarAlumnos();
-				break;
-			case 2: 
-				fl.mostrarAdministradores();
-				break;
-			case 3: 
-				break;
-			case 4: 
-				break;
-			case 5: 
-				fl.prtDocControl(111, 99999999);
-				fl.prtDocControl(111, 88888888);
-				break;
-			case 90:
-				System.out.println("Fin del programa");
-				break;
-			default:
-				System.out.println("Opción inválida");
-			}
-			System.out.println();
-			
-		} while (opcion != 90);
-
-		scan.close();
-		*/
-
-    }	
-
+	}		
 
 }

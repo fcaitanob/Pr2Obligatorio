@@ -167,6 +167,23 @@ public class FachadaLogica {
 		// Alta de administradores
         altaAdministrador(99999999);
         altaAdministrador(88888888);
+        altaAdministrador(77777777);
+        altaAdministrador(77777770);
+        altaAdministrador(77777771);
+        altaAdministrador(77777772);
+        altaAdministrador(77777773);
+        altaAdministrador(77777774);
+        altaAdministrador(77777775);
+        altaAdministrador(77777776);
+        altaAdministrador(77777778);
+        altaAdministrador(777777790);
+        altaAdministrador(777777791);
+        altaAdministrador(777777792);
+        altaAdministrador(777777793);
+        altaAdministrador(777777794);
+        altaAdministrador(777777795);
+        altaAdministrador(777777796);
+        altaAdministrador(777777797);
 
 
 		// Alta de administradores x alumno
