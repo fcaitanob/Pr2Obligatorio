@@ -107,8 +107,8 @@ public class FachadaLogica {
         administradores.mostrarTodos();
     }
 
-    public void altaAdministrador(int ci) {
-        Administrador admin = new Administrador(ci);
+    public void altaAdministrador(int ci, String com) {
+        Administrador admin = new Administrador(ci, com);
         administradores.alta(admin);
     }
 	
@@ -158,6 +158,11 @@ public class FachadaLogica {
 	//----------------------------------------
 	public void inicializarSinBD() {
 		
+		// dejo los hashmap vacíos
+		alumnos.inicializarAlumnos();
+		administradores.inicializarAdministradores();
+		
+		
         // Alta de alumnos internos 
         altaAlumnoInterno(111, "nombre uno", "vegetariano");
 		
@@ -165,25 +170,25 @@ public class FachadaLogica {
         altaAlumnoExterno(222, "nombre dos", "futbol");
 		
 		// Alta de administradores
-        altaAdministrador(99999999);
-        altaAdministrador(88888888);
-        altaAdministrador(77777777);
-        altaAdministrador(77777770);
-        altaAdministrador(77777771);
-        altaAdministrador(77777772);
-        altaAdministrador(77777773);
-        altaAdministrador(77777774);
-        altaAdministrador(77777775);
-        altaAdministrador(77777776);
-        altaAdministrador(77777778);
-        altaAdministrador(777777790);
-        altaAdministrador(777777791);
-        altaAdministrador(777777792);
-        altaAdministrador(777777793);
-        altaAdministrador(777777794);
-        altaAdministrador(777777795);
-        altaAdministrador(777777796);
-        altaAdministrador(777777797);
+        altaAdministrador(99999999, "Comentario 9");
+        altaAdministrador(88888888, "Comentario 8");
+        altaAdministrador(77777777, "Comentario 7");
+        altaAdministrador(77777770, "Comentario 70");
+        altaAdministrador(77777771, "Comentario 71");
+        altaAdministrador(77777772, "Comentario 72");
+        altaAdministrador(77777773, "Comentario 73");
+        altaAdministrador(77777774, "Comentario 74");
+        altaAdministrador(77777775, "Comentario 75");
+        altaAdministrador(77777776, "Comentario 76");
+        altaAdministrador(77777778, "Comentario 78");
+        altaAdministrador(777777790, "Comentario 90");
+        altaAdministrador(777777791, "Comentario 91");
+        altaAdministrador(777777792, "Comentario 92");
+        altaAdministrador(777777793, "Comentario 93");
+        altaAdministrador(777777794, "Comentario 94");
+        altaAdministrador(777777795, "Comentario 95");
+        altaAdministrador(777777796, "Comentario 96");
+        altaAdministrador(777777797, "Comentario 97");
 
 
 		// Alta de administradores x alumno

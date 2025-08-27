@@ -3,6 +3,7 @@ package clases_generales;
 import java.util.ArrayList;
 
 public class Administrador extends Persona {
+	private String comentarioAdm;
     private ArrayList<AdmControlaAlu> secAdmControlaAlu;
     public static final int MAX_ALUMNO = 14;
 
@@ -12,9 +13,25 @@ public class Administrador extends Persona {
     }
 
     
+    public Administrador(int ci, String comentarioAdm) {
+        super(ci);
+        this.secAdmControlaAlu = new ArrayList<>();
+    	this.comentarioAdm = comentarioAdm;
+    }
     
     
-    public ArrayList<AdmControlaAlu> getSecAdmControlaAlu() {
+    
+    public void setComentarioAdm(String comentarioAdm) {
+		this.comentarioAdm = comentarioAdm;
+	}
+
+
+	public String getComentarioAdm() {
+		return comentarioAdm;
+	}
+
+
+	public ArrayList<AdmControlaAlu> getSecAdmControlaAlu() {
 		return secAdmControlaAlu;
 	}
 

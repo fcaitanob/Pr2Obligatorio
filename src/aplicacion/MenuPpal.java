@@ -42,10 +42,19 @@ public class MenuPpal {
         MenuItem alumnosItem = new MenuItem("Lista Alumnos");
         
         administradorMenu.add(alumnosItem);
+
+        // Utilidades Menu
+        Menu utilidadesMenu = new Menu("Utilidades");
+        MenuItem inicializarSinBDItem = new MenuItem("Inicializar sin BD");
+        
+        utilidadesMenu.add(inicializarSinBDItem);
+
+        
         
         // agrego menúes en el menuBar
         menuBar.add(supervisorMenu);
         menuBar.add(administradorMenu);
+        menuBar.add(utilidadesMenu);
         
         // Pongo el menu bar en el frame
         frame.setMenuBar(menuBar);
@@ -56,6 +65,16 @@ public class MenuPpal {
                 frame.dispose(); // Cierro window
             }
         });
+
+        
+        // Agrego acción para Inicializar
+        inicializarSinBDItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                fl.inicializarSinBD();
+            }
+        });
+
+        
         
         // Acción para abrir la grilla
         administradoresItem.addActionListener(new ActionListener() {

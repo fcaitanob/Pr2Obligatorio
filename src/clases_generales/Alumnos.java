@@ -6,7 +6,14 @@ public class Alumnos {
 
     private HashMap<Integer, Alumno> tablaAlumnos;
 
-    public Alumnos() {
+    
+    
+    
+    public void inicializarAlumnos() {
+        this.tablaAlumnos = new HashMap<>();
+	}
+
+	public Alumnos() {
         this.tablaAlumnos = new HashMap<>();
     }
 

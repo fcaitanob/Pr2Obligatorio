@@ -15,7 +15,7 @@ public class Principal {
 	public static void main(String[] args) {
 		// Cargo objetos
 		Principal ppal = new Principal();
-		ppal.fl.inicializarSinBD();
+		//ppal.fl.inicializarSinBD();
 		ppal.mp.muestroMenu();
 		System.out.println("Estoy en el main de clase Principal");
 	}		

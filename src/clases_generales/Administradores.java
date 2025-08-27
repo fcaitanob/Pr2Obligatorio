@@ -10,6 +10,12 @@ public class Administradores {
         this.tablaAdministradores = new HashMap<>();
     }
 
+    
+    public void inicializarAdministradores() {
+        this.tablaAdministradores = new HashMap<>();
+    }
+
+    
     public void alta(Administrador admin) {
         tablaAdministradores.put(admin.getCi(), admin);
     }
