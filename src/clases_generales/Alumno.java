@@ -11,7 +11,7 @@ public abstract class Alumno extends Persona {
 	private float cuotaReal;
 
 	private ArrayList<AdmControlaAlu> secAdmControlaAlu;
-    public static final int MAX_ADMINISTRADOR = 3;
+    public static final int MAX_ADMINISTRADOR = 2;
 
     
 	
@@ -87,6 +87,21 @@ public abstract class Alumno extends Persona {
             return false;
         }
     }
+
+	
+	public boolean eliminarAdmControlaAlu(int ciAlumno, int ciAdmin) {
+
+		for(int i=0; i<secAdmControlaAlu.size();i++) {
+			if (secAdmControlaAlu.get(i).getAdm().getCi() == ciAdmin &&
+				secAdmControlaAlu.get(i).getAlu().getCi() == ciAlumno) {
+			  secAdmControlaAlu.remove(i);
+			  return true;
+			}
+		}
+            return false;
+    }
+
+	
 	
 	// Método abstracto que se debe implementar en las subclases
 	public abstract float calculoCuota() ;

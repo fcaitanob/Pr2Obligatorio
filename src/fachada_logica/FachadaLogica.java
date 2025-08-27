@@ -48,6 +48,21 @@ public class FachadaLogica {
         //System.out.println(al.toString());
         return li;
     }
+
+    
+    public ArrayList<Alumno> obtenerAlumnosDeAdm(int ci) {
+        Administrador ad;
+        ArrayList<Alumno> li = new ArrayList<Alumno>();
+        ad = administradores.obtiene(ci);
+        for (int i=0; i<ad.getSecAdmControlaAlu().size(); i++) {
+        	li.add(ad.getSecAdmControlaAlu().get(i).getAlu());
+        }
+        //System.out.println("estoy en obtenerAdmsDealumno.....");
+        //System.out.println(al.toString());
+        return li;
+    }
+
+    
     
     public void calcularCuotasTodos() {
     	
@@ -116,7 +131,8 @@ public class FachadaLogica {
     // Otros
 	//----------------------------------
 
-    public void asignarAlumnoAAdministrador(int ciAlumno, int ciAdmin, LocalDate fi, LocalDate ff) {
+    public Boolean asignarAlumnoAAdministrador(int ciAlumno, int ciAdmin, LocalDate fi, LocalDate ff) {
+    	Boolean retorno = false;
         Administrador admin = administradores.obtiene(ciAdmin);
         Alumno alumno = alumnos.obtiene(ciAlumno);
         AdmControlaAlu c = new AdmControlaAlu(alumnos.obtiene(ciAlumno), administradores.obtiene(ciAdmin), fi, ff);
@@ -125,10 +141,20 @@ public class FachadaLogica {
         		&& alumno.getSecAdmControlaAlu().size() < Alumno.MAX_ADMINISTRADOR) {
             admin.agregarAdmControlaAlu(c);
             alumno.agregarAdmControlaAlu(c);
+            retorno = true;
         } else {
             System.out.println("No se pudo asignar: administrador inexistente, alumno inexistente o límite alcanzado.");
         }
+        return retorno;
     }
+    
+    public void desasignarAlumnoAAdministrador(int ciAlumno, int ciAdmin, LocalDate fi, LocalDate ff) {
+        Administrador admin = administradores.obtiene(ciAdmin);
+        Alumno alumno = alumnos.obtiene(ciAlumno);
+        admin.eliminarAdmControlaAlu(ciAlumno, ciAdmin);
+        alumno.eliminarAdmControlaAlu(ciAlumno, ciAdmin);
+    }
+
     
     
     public void prtDocControl(int ciAlu, int ciAdm) {
@@ -168,6 +194,10 @@ public class FachadaLogica {
 		
 		// Alta alumnos externos
         altaAlumnoExterno(222, "nombre dos", "futbol");
+        altaAlumnoExterno(333, "nombre tres", "futbol");
+        altaAlumnoExterno(444, "nombre 4", "futbol");
+        altaAlumnoExterno(555, "nombre 5", "futbol");
+        altaAlumnoExterno(666, "nombre 6", "futbol");
 		
 		// Alta de administradores
         altaAdministrador(99999999, "Comentario 9");

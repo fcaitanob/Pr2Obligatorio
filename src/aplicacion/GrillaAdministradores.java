@@ -19,7 +19,7 @@ public class GrillaAdministradores extends JFrame {
 
 	
 	/**
-	 * Esto lo hicimos ya que lo sugiere Eclipse para eliminar un Warning
+	 * Esto lo hicimos ya que lo sugiere Eclipse para eliminar un Warning 
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +31,7 @@ public class GrillaAdministradores extends JFrame {
 	    modelo.setRowCount(0); // limpiar la tabla
 	    
 	    for (Integer ci : admins.getTablaAdministradores().keySet()) {
-	        modelo.addRow(new Object[]{ci, admins.getTablaAdministradores().get(ci).getComentarioAdm(),"MOD", "BORRAR"});
+	        modelo.addRow(new Object[]{ci, admins.getTablaAdministradores().get(ci).getComentarioAdm(),"MOD", "BORRAR", "ALUs"});
 	    }
 	}
 
@@ -54,12 +54,11 @@ public class GrillaAdministradores extends JFrame {
 
         // Panel de filtro interior (a la izquierda)
         JPanel panelFiltroInterior = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        panelFiltroSuperior.add(new JLabel("Filtro por CI: "));
+        JLabel lblFiltro = new JLabel("Filtro por CI: ");
         JTextField txtFiltro = new JTextField(10);
+        panelFiltroInterior.add(lblFiltro);
         panelFiltroInterior.add(txtFiltro);
 
-        panelFiltroSuperior.add(panelFiltroInterior, BorderLayout.WEST);
-        
         panelFiltroSuperior.add(panelFiltroInterior, BorderLayout.WEST);
         panelFiltroSuperior.add(btnNuevoAdmin, BorderLayout.EAST);
 
@@ -67,14 +66,15 @@ public class GrillaAdministradores extends JFrame {
         JPanel panelActualizar = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
         panelActualizar.add(btnActualizar);
         panelFiltroSuperior.add(panelActualizar, BorderLayout.CENTER);
-        this.add(panelFiltroSuperior, BorderLayout.NORTH);
+        
+        this.add(panelFiltroSuperior, BorderLayout.NORTH); // agrega en el objeto grilla
 
         // Encabezados de la tabla
-        String[] columnas = {"CI", "Comentario", "Modificar", "Borrar"};
+        String[] columnas = {"CI", "Comentario", "Modificar", "Borrar", "Alumnos"};
 
         // Modelo de la tabla
         DefaultTableModel modelo = new DefaultTableModel(new Object[][]{}, columnas);
-        this.cargarDatosDesdeCeroEnGrilla(fl, modelo); // Carga inicial de renglones con datos
+        cargarDatosDesdeCeroEnGrilla(fl, modelo); // Carga inicial de renglones con datos
         
         
         // Creamos la JTable y el scroll
@@ -82,6 +82,7 @@ public class GrillaAdministradores extends JFrame {
         // Ajustar el ancho de las columnas de acción
         tabla.getColumnModel().getColumn(2).setMaxWidth(80);  // Modificar
         tabla.getColumnModel().getColumn(3).setMaxWidth(80);  // Borrar
+        tabla.getColumnModel().getColumn(4).setMaxWidth(80);  // Alumnos
 
         JScrollPane scrollPane = new JScrollPane(tabla);
 
@@ -96,7 +97,7 @@ public class GrillaAdministradores extends JFrame {
 
                 if (columna == 2) { 
                     int ci = (int) tabla.getValueAt(fila, 0);
-                    JOptionPane.showMessageDialog(null, "Modificar administrador CI: " + ci);
+                    //JOptionPane.showMessageDialog(null, "Modificar administrador CI: " + ci);
                     new PantallaModAdministrador(
                             GrillaAdministradores.this, // lo paso para armar pantalla modal
                             fl, 
@@ -105,7 +106,8 @@ public class GrillaAdministradores extends JFrame {
                     //actualiza luego del cierre de pantalla modal
                     // de modificación del administrador
                     cargarDatosDesdeCeroEnGrilla(fl, modelo); 
-                } else if (columna == 3) {
+                } 
+                if (columna == 3) {
                     int ci = (int) tabla.getValueAt(fila, 0);
                     // Panel de confirmación
                     int opcion = JOptionPane.showConfirmDialog(
@@ -123,13 +125,26 @@ public class GrillaAdministradores extends JFrame {
                         System.out.println("Baja cancelada.");
                     }
                 }
+                if (columna == 4) {
+                    int ci = (int) tabla.getValueAt(fila, 0);
+                    // Alumnos del administrador
+                    //JOptionPane.showMessageDialog(null, "Alumnos del administrador CI: " + ci);
+                    new PantallaRelacionAlumnosAdministrador(
+                            GrillaAdministradores.this, // lo paso para armar pantalla modal
+                            fl, 
+                            ci
+                        ).setVisible(true);                
+                    
+                }
+                
+                
             }
         });
         
         // Detectar clic en boton de alta
         btnNuevoAdmin.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		JOptionPane.showMessageDialog(null, "Alta de nuevo administrador ");
+        		//JOptionPane.showMessageDialog(null, "Alta de nuevo administrador ");
                 new PantallaAltaAdministrador(
                         GrillaAdministradores.this, // lo paso para armar pantalla modal
                         fl
@@ -144,7 +159,7 @@ public class GrillaAdministradores extends JFrame {
         // Detectar clic en boton de actualizar
         btnActualizar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		JOptionPane.showMessageDialog(null, "Actualizar datos de la grilla ");
+        		//JOptionPane.showMessageDialog(null, "Actualizar datos de la grilla ");
             	cargarDatosDesdeCeroEnGrilla(fl, modelo); // recarga grilla desde cero
         		
             }
@@ -154,7 +169,7 @@ public class GrillaAdministradores extends JFrame {
         TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelo);
         tabla.setRowSorter(sorter);
         
-     // Ordenar inicialmente por CI (columna 0)
+        // Ordenar inicialmente por CI (columna 0)
         java.util.List<RowSorter.SortKey> sortParaCI = new java.util.ArrayList<>();
         sortParaCI.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
         sorter.setSortKeys(sortParaCI);
