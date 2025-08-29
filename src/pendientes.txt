@@ -7,4 +7,4 @@ Hecho:
 Falta:
 - CRUD para Alumnos
 - Pantalla para imprimir control
-- Utilizar BDatos en la fachada 
+- Utilizar BDatos en la fachada (rama persistenciaV1)
