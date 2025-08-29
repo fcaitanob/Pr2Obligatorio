@@ -1,0 +1,10 @@
+Hecho:
+- clases_generales
+- fachada_logica
+- CRUD para Administradores (pantallas Win)
+- Pantalla para relacionar administradores con alumnos (desde crud administradores)
+
+Falta:
+- CRUD para Alumnos
+- Pantalla para imprimir control
+- Utilizar BDatos en la fachada 

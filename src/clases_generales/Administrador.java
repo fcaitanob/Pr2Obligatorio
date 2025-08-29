@@ -3,8 +3,9 @@ package clases_generales;
 import java.util.ArrayList;
 
 public class Administrador extends Persona {
+	private String comentarioAdm;
     private ArrayList<AdmControlaAlu> secAdmControlaAlu;
-    public static final int MAX_ALUMNO = 14;
+    public static final int MAX_ALUMNO = 3;
 
     public Administrador(int ci) {
         super(ci);
@@ -12,9 +13,25 @@ public class Administrador extends Persona {
     }
 
     
+    public Administrador(int ci, String comentarioAdm) {
+        super(ci);
+        this.secAdmControlaAlu = new ArrayList<>();
+    	this.comentarioAdm = comentarioAdm;
+    }
     
     
-    public ArrayList<AdmControlaAlu> getSecAdmControlaAlu() {
+    
+    public void setComentarioAdm(String comentarioAdm) {
+		this.comentarioAdm = comentarioAdm;
+	}
+
+
+	public String getComentarioAdm() {
+		return comentarioAdm;
+	}
+
+
+	public ArrayList<AdmControlaAlu> getSecAdmControlaAlu() {
 		return secAdmControlaAlu;
 	}
 
@@ -30,7 +47,21 @@ public class Administrador extends Persona {
         }
     }
 
-    public void mostrarAlumnos() {
+	public boolean eliminarAdmControlaAlu(int ciAlumno, int ciAdmin) {
+
+		for(int i=0; i<secAdmControlaAlu.size();i++) {
+			if (secAdmControlaAlu.get(i).getAdm().getCi() == ciAdmin &&
+				secAdmControlaAlu.get(i).getAlu().getCi() == ciAlumno) {
+			  secAdmControlaAlu.remove(i);
+			  return true;
+			}
+		}
+            return false;
+    }
+
+	
+	
+	public void mostrarAlumnos() {
         System.out.println("Administrador CI: " + this.getCi() + " tiene los siguientes alumnos:");
         for (AdmControlaAlu c : secAdmControlaAlu) {
             System.out.println(c.getAlu());

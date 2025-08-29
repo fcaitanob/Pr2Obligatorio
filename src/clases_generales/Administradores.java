@@ -10,6 +10,12 @@ public class Administradores {
         this.tablaAdministradores = new HashMap<>();
     }
 
+    
+    public void inicializarAdministradores() {
+        this.tablaAdministradores = new HashMap<>();
+    }
+
+    
     public void alta(Administrador admin) {
         tablaAdministradores.put(admin.getCi(), admin);
     }
@@ -26,7 +32,14 @@ public class Administradores {
         tablaAdministradores.remove(ci);
     }
 
-    public void mostrarTodos() {
+    
+    
+    
+    public HashMap<Integer, Administrador> getTablaAdministradores() {
+		return tablaAdministradores;
+	}
+
+	public void mostrarTodos() {
         for (Administrador admin : tablaAdministradores.values()) {
             System.out.println(admin);
             //admin.mostrarAlumnos(); // Opcional: muestra alumnos del admin
