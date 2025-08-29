@@ -59,13 +59,15 @@ public class GrillaAdministradores extends JFrame {
         panelFiltroInterior.add(lblFiltro);
         panelFiltroInterior.add(txtFiltro);
 
-        panelFiltroSuperior.add(panelFiltroInterior, BorderLayout.WEST);
-        panelFiltroSuperior.add(btnNuevoAdmin, BorderLayout.EAST);
+        //panelFiltroSuperior.add(panelFiltroInterior, BorderLayout.WEST);
+        panelFiltroSuperior.add(panelFiltroInterior);
+        //panelFiltroSuperior.add(btnNuevoAdmin, BorderLayout.EAST);
 
-        //boton actualizar ajustado en otro panel
+        //boton actualizar y nuevo ajustado en otro panel
         JPanel panelActualizar = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
         panelActualizar.add(btnActualizar);
-        panelFiltroSuperior.add(panelActualizar, BorderLayout.CENTER);
+        panelActualizar.add(btnNuevoAdmin);
+        panelFiltroSuperior.add(panelActualizar, BorderLayout.EAST);
         
         this.add(panelFiltroSuperior, BorderLayout.NORTH); // agrega en el objeto grilla
 
