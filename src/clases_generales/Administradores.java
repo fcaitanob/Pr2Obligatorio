@@ -11,7 +11,12 @@ public class Administradores {
     }
 
     
-    public void inicializarAdministradores() {
+    public void setTablaAdministradores(HashMap<Integer, Administrador> tablaAdministradores) {
+		this.tablaAdministradores = tablaAdministradores;
+	}
+
+
+	public void inicializarAdministradores() {
         this.tablaAdministradores = new HashMap<>();
     }
 

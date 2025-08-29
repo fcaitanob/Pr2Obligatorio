@@ -20,6 +20,15 @@ public class AdmControlaAlu {
 	public LocalDate getFchFin() {
 		return fchFin;
 	}
+	
+	
+	
+	public AdmControlaAlu() {
+		this.alu = null;
+		this.adm = null;
+		this.fchInicio = null;
+		this.fchFin = null;
+	}
 	public AdmControlaAlu(Alumno alu, Administrador adm, LocalDate fchInicio, LocalDate fchFin) {
 		this.alu = alu;
 		this.adm = adm;

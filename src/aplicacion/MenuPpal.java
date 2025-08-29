@@ -46,8 +46,9 @@ public class MenuPpal {
         // Utilidades Menu
         Menu utilidadesMenu = new Menu("Utilidades");
         MenuItem inicializarSinBDItem = new MenuItem("Inicializar sin BD");
-        
         utilidadesMenu.add(inicializarSinBDItem);
+        MenuItem inicializarConBDItem = new MenuItem("Inicializar con BD");
+        utilidadesMenu.add(inicializarConBDItem);
 
         
         
@@ -67,13 +68,19 @@ public class MenuPpal {
         });
 
         
-        // Agrego acción para Inicializar
+        // Agrego acción para Inicializar SIN BD
         inicializarSinBDItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fl.inicializarSinBD();
             }
         });
 
+        // Agrego acción para Inicializar CON BD
+        inicializarConBDItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                fl.inicializarConBD();
+            }
+        });
         
         
         // Acción para abrir la grilla

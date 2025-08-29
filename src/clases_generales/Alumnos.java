@@ -9,7 +9,11 @@ public class Alumnos {
     
     
     
-    public void inicializarAlumnos() {
+    public void setTablaAlumnos(HashMap<Integer, Alumno> tablaAlumnos) {
+		this.tablaAlumnos = tablaAlumnos;
+	}
+
+	public void inicializarAlumnos() {
         this.tablaAlumnos = new HashMap<>();
 	}
 

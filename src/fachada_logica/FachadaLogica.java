@@ -3,18 +3,22 @@ package fachada_logica;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import clases_generales.*;
+import fachada_persistencia.*;
 
 public class FachadaLogica {
 
 	private Alumnos alumnos;
 	private Administradores administradores;
+	private FachadaPersistencia fp;
 	
 	public FachadaLogica() {
 		alumnos = new Alumnos();
 		administradores = new Administradores();
+		fp = new FachadaPersistencia(this);
 	}
 
 	public Alumnos getAlumnos() {
@@ -228,6 +232,45 @@ public class FachadaLogica {
 		
 	}
 
+	//----------------------------------------
+	// Inicializar objetos y cargar a mano
+	//----------------------------------------
+	public void inicializarConBD() {
+		
+		// dejo los hashmap vacíos
+		alumnos.inicializarAlumnos();
+		administradores.inicializarAdministradores();
+		
+		
+		// Alta de administradores
+		administradores.setTablaAdministradores(fp.cargaAdministradoresDesdeBD());
+    
+		// Alta de alumnos internos todos juntos
+		alumnos.setTablaAlumnos(fp.cargaInternosDesdeBD());
+		
+		// agregar externos uno a uno
+		HashMap<Integer, Alumno> hmAlu = new HashMap<>();
+		hmAlu = fp.cargaExternosDesdeBD();
+		for(Integer i: hmAlu.keySet() ) {
+			alumnos.alta(hmAlu.get(i));
+		}
+		
+		// agregar administradores por alumno
+		ArrayList<AdmControlaAlu> acaList = new ArrayList<AdmControlaAlu>();
+		acaList = fp.cargaACADesdeBD();
+		int ciAlu =0;
+		int ciAdm =0;
+		for(int i=0; i<acaList.size(); i++) {
+			ciAlu = acaList.get(i).getAlu().getCi();
+			ciAdm = acaList.get(i).getAdm().getCi();
+			alumnos.obtiene(ciAlu).agregarAdmControlaAlu(acaList.get(i));
+			administradores.obtiene(ciAdm).agregarAdmControlaAlu(acaList.get(i));
+		}
+		
+		
+		
+		
+	}
 
 
     
