@@ -8,3 +8,6 @@ Falta:
 - CRUD para Alumnos
 - Pantalla para imprimir control
 - Utilizar BDatos en la fachada (rama persistenciaV1)
+    . inicializarConBD - HECHO
+    . altaAdministradorBD - HECHO
+    . seguir....

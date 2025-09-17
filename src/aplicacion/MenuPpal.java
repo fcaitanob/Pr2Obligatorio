@@ -83,7 +83,7 @@ public class MenuPpal {
         });
         
         
-        // Acción para abrir la grilla
+        // Acción para abrir la grilla de administradores
         administradoresItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 GrillaAdministradores ga = new GrillaAdministradores(fl);

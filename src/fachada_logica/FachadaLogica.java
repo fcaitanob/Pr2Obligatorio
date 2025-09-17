@@ -106,8 +106,11 @@ public class FachadaLogica {
     // Operaciones con administradores
 	//----------------------------------
 
-    public void altaAdministrador(Administrador admin) {
-        administradores.alta(admin);
+    public boolean altaAdministrador(Administrador admin) {
+        boolean retorno = false;
+    	administradores.alta(admin);
+        retorno = fp.altaAdministradorBD(admin);
+        return retorno;
     }
 
     public Administrador obtenerAdministrador(int ci) {
@@ -233,7 +236,7 @@ public class FachadaLogica {
 	}
 
 	//----------------------------------------
-	// Inicializar objetos y cargar a mano
+	// Inicializar objetos y cargar desde la BD
 	//----------------------------------------
 	public void inicializarConBD() {
 		

@@ -2,6 +2,8 @@ package fachada_persistencia;
 
 import fachada_logica.FachadaLogica;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -17,6 +19,35 @@ public class FachadaPersistencia {
 	public FachadaPersistencia (FachadaLogica fl) {
 		this.fl = fl;
 	}
+	
+
+	//-------------------------------------
+	// Administradores desde la BD
+	//-------------------------------------
+	public boolean altaAdministradorBD(Administrador a) {
+		
+		boolean retorno = false;
+		PreparedStatement ps = null;
+		Connection con = null;
+		int cantidadFilas = 0;
+		
+		con = cbd.conectar();
+		String sql =  "INSERT INTO p2pruebas01.administradores (CI, Comentario) VALUES (?, ?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, a.getCi());
+			ps.setString(2, a.getComentarioAdm());
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		cbd.desconectar();
+		return retorno;
+	}
+
 	
 	
 	
@@ -130,7 +161,22 @@ public class FachadaPersistencia {
 	}
 
 	
+/*	
+ // Pruebas con main
+public static void main(String[] ar) {
+	HashMap<Integer, Administrador> x = new HashMap<>();
+	FachadaLogica z = new FachadaLogica();
+	FachadaPersistencia y = new FachadaPersistencia(z);
 	
+	x = y.cargaAdministradoresDesdeBD();
 	
+	for(Integer i: x.keySet()) {
+		System.out.print(x.get(i).toString());
+		System.out.println(x.get(i).getComentarioAdm());
+		System.out.println("--------------------------------------");
+	}
+			
+}
+*/	
 	
 }

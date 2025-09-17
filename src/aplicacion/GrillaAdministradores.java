@@ -18,9 +18,8 @@ import java.awt.event.MouseEvent;
 public class GrillaAdministradores extends JFrame {
 
 	
-	/**
-	 * Esto lo hicimos ya que lo sugiere Eclipse para eliminar un Warning 
-	 */
+	
+	//Esto  que viene a continuación lo hicimos ya que lo sugiere Eclipse para eliminar un Warning
 	private static final long serialVersionUID = 1L;
 
 
@@ -88,7 +87,7 @@ public class GrillaAdministradores extends JFrame {
 
         JScrollPane scrollPane = new JScrollPane(tabla);
 
-        add(scrollPane, BorderLayout.CENTER);
+        this.add(scrollPane, BorderLayout.CENTER); // agrego scroll a la grilla
         
         
         // Detectar clic en columnas Modificar o Borrar
