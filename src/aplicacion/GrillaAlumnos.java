@@ -82,7 +82,7 @@ public class GrillaAlumnos extends JFrame {
         this.add(panelFiltroSuperior, BorderLayout.NORTH); // agrega en el objeto grilla
 
         // Encabezados de la tabla
-        String[] columnas = {"CI", "Comentario", "Tipo", "Modificar", "Borrar"};
+        String[] columnas = {"CI", "Nombre", "Tipo", "Modificar", "Borrar"};
 
         // Modelo de la tabla
         DefaultTableModel modelo = new DefaultTableModel(new Object[][]{}, columnas);
@@ -148,7 +148,7 @@ public class GrillaAlumnos extends JFrame {
             }
         });
         
-        // Detectar clic en boton de alta
+        // Detectar clic en boton de alta interno
         btnNuevoAluInt.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		new PantallaAltaInterno(
@@ -160,6 +160,21 @@ public class GrillaAlumnos extends JFrame {
             }
         });
 
+        
+        // Detectar clic en boton de alta interno
+        btnNuevoAluExt.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		new PantallaAltaExterno(
+                        GrillaAlumnos.this, // lo paso para armar pantalla modal
+                        fl
+                    ).setVisible(true);                
+                cargarDatosDesdeCeroEnGrilla(fl, modelo); 
+        		
+            }
+        });
+
+        
+        
         // Detectar clic en boton de actualizar
         btnActualizar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
