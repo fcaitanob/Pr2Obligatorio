@@ -13,4 +13,6 @@ Falta:
     . bajaAdministradorBD - HECHO
     . modificarAdministradorBD - HECHO se hace con bajaSolo y alta
     . agregar admContolaAlu - HECHO
+    . eliminar ACU - HECHO
+    . grillaAlumnos en proceso, modificación interno hecha (falta modificacion externo, alta interno y alta externo)
     . seguir....

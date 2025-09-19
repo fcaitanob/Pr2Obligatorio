@@ -45,8 +45,6 @@ public class MenuPpal {
 
         // Utilidades Menu
         Menu utilidadesMenu = new Menu("Utilidades");
-        MenuItem inicializarSinBDItem = new MenuItem("Inicializar sin BD");
-        utilidadesMenu.add(inicializarSinBDItem);
         MenuItem inicializarConBDItem = new MenuItem("Inicializar con BD");
         utilidadesMenu.add(inicializarConBDItem);
 
@@ -68,12 +66,6 @@ public class MenuPpal {
         });
 
         
-        // Agrego acción para Inicializar SIN BD
-        inicializarSinBDItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                fl.inicializarSinBD();
-            }
-        });
 
         // Agrego acción para Inicializar CON BD
         inicializarConBDItem.addActionListener(new ActionListener() {
@@ -87,6 +79,14 @@ public class MenuPpal {
         administradoresItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 GrillaAdministradores ga = new GrillaAdministradores(fl);
+                ga.setVisible(true);
+            }
+        });
+        
+        // Acción para abrir la grilla de alumnos
+        alumnosItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                GrillaAlumnos ga = new GrillaAlumnos(fl);
                 ga.setVisible(true);
             }
         });

@@ -63,7 +63,7 @@ public abstract class Alumno extends Persona {
 		return cuotaReal;
 	}
 
-	public void setCuotaReal(int cuotaReal) {
+	public void setCuotaReal(float cuotaReal) {
 		this.cuotaReal = cuotaReal;
 	}
 

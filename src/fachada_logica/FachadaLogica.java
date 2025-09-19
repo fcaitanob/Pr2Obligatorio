@@ -84,6 +84,7 @@ public class FachadaLogica {
 
     public void bajaAlumno(int ci) {
         alumnos.baja(ci);
+        fp.bajaAlumnoSoloBD(ci);
     }
 
     public void mostrarAlumnos() {
@@ -96,9 +97,10 @@ public class FachadaLogica {
         
     }
 
-    public void altaAlumnoInterno(int ci, String nombre, String regimen) {
-        Alumno a = new Interno(ci, nombre, regimen);
+    public void altaAlumnoInterno(int ci, String nombre, int edad, String dir, float cuotaMensual, float cuotaReal, String regimen) {
+        Alumno a = new Interno(ci, nombre, edad, dir, cuotaMensual, cuotaReal, regimen);
         alumnos.alta(a);
+        fp.altaAluIntBD((Interno) a);
     }
 
     
@@ -194,6 +196,12 @@ public class FachadaLogica {
         Alumno alumno = alumnos.obtiene(ciAlumno);
         admin.eliminarAdmControlaAlu(ciAlumno, ciAdmin);
         alumno.eliminarAdmControlaAlu(ciAlumno, ciAdmin);
+        if (fp.eliminarAdmControlaAluBD(ciAlumno, ciAdmin)) {
+        	System.out.println("Eliminación correcta de ACA con alumno " + ciAlumno + " Administrador " + ciAdmin);
+        } else {
+        	System.out.println("ERROR en eliminación de ACA con alumno " + ciAlumno + " Administrador " + ciAdmin);
+        }
+        
     }
 
     
@@ -220,54 +228,6 @@ public class FachadaLogica {
     
     
 	
-	//----------------------------------------
-	// Inicializar objetos y cargar a mano
-	//----------------------------------------
-	public void inicializarSinBD() {
-		
-		// dejo los hashmap vacíos
-		alumnos.inicializarAlumnos();
-		administradores.inicializarAdministradores();
-		
-		
-        // Alta de alumnos internos 
-        altaAlumnoInterno(111, "nombre uno", "vegetariano");
-		
-		// Alta alumnos externos
-        altaAlumnoExterno(222, "nombre dos", "futbol");
-        altaAlumnoExterno(333, "nombre tres", "futbol");
-        altaAlumnoExterno(444, "nombre 4", "futbol");
-        altaAlumnoExterno(555, "nombre 5", "futbol");
-        altaAlumnoExterno(666, "nombre 6", "futbol");
-		
-		// Alta de administradores
-        altaAdministrador(99999999, "Comentario 9");
-        altaAdministrador(88888888, "Comentario 8");
-        altaAdministrador(77777777, "Comentario 7");
-        altaAdministrador(77777770, "Comentario 70");
-        altaAdministrador(77777771, "Comentario 71");
-        altaAdministrador(77777772, "Comentario 72");
-        altaAdministrador(77777773, "Comentario 73");
-        altaAdministrador(77777774, "Comentario 74");
-        altaAdministrador(77777775, "Comentario 75");
-        altaAdministrador(77777776, "Comentario 76");
-        altaAdministrador(77777778, "Comentario 78");
-        altaAdministrador(777777790, "Comentario 90");
-        altaAdministrador(777777791, "Comentario 91");
-        altaAdministrador(777777792, "Comentario 92");
-        altaAdministrador(777777793, "Comentario 93");
-        altaAdministrador(777777794, "Comentario 94");
-        altaAdministrador(777777795, "Comentario 95");
-        altaAdministrador(777777796, "Comentario 96");
-        altaAdministrador(777777797, "Comentario 97");
-
-
-		// Alta de administradores x alumno
-        asignarAlumnoAAdministrador(111, 99999999, LocalDate.now(), LocalDate.of(2025, 12, 31));
-        asignarAlumnoAAdministrador(222, 99999999, LocalDate.now(), LocalDate.of(2025, 12, 31));
-		
-		
-	}
 
 	//----------------------------------------
 	// Inicializar objetos y cargar desde la BD

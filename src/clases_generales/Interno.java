@@ -10,6 +10,17 @@ public class Interno extends Alumno {
         this.regAlim = regAlim;
     }
 
+    public Interno(int ci, String nombre, int edad, String dir, float cuotaMensual, float cuotaReal, String regAlim) {
+        super(ci, nombre);
+        super.setEdad(edad);
+        super.setDireccion(dir);
+        super.setCuotaMensual(cuotaMensual);
+        super.setCuotaReal(cuotaReal);
+        this.regAlim = regAlim;
+    }
+
+    
+    
     public String getRegAlim() {
         return regAlim;
     }

@@ -21,6 +21,78 @@ public class FachadaPersistencia {
 	}
 	
 
+	
+	public boolean eliminarAdmControlaAluBD(int ciAlumno, int ciAdmin) {
+		
+		boolean retorno = false;
+		PreparedStatement ps = null;
+		Connection con = null;
+		int cantidadFilas = 0;
+		
+		con = cbd.conectar();
+		//DELETE FROM p2pruebas01.administra WHERE (cialumno = 111) and (ciadmin = 99999999);
+
+
+		String sql =  "DELETE FROM p2pruebas01.administra ";
+		sql += "WHERE cialumno = ? and ciadmin = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, ciAlumno);
+			ps.setInt(2, ciAdmin);
+			//System.out.println(ps.toString());
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		cbd.desconectar();
+
+		return retorno;
+	}
+
+	
+	//-------------------------------------
+	// Alta Alumno Interno a la BD
+	//-------------------------------------
+	public boolean altaAluIntBD(Interno aluInt) {
+		
+		boolean retorno = false;
+		PreparedStatement ps = null;
+		Connection con = null;
+		int cantidadFilas = 0;
+		
+		con = cbd.conectar();
+		String sql =  "INSERT INTO p2pruebas01.alumnos (CI, nombre, edad, direccion, cuotaMensual, cuotaReal) VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, aluInt.getCi());
+			ps.setString(2, aluInt.getNombre());
+			ps.setInt(3, aluInt.getEdad());
+			ps.setString(4, aluInt.getDireccion());
+			ps.setFloat(5, aluInt.getCuotaMensual());
+			ps.setFloat(6,  aluInt.getCuotaReal());
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		sql =  "INSERT INTO p2pruebas01.aluinterno (CI, regAlim) VALUES (?, ?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, aluInt.getCi());
+			ps.setString(2, aluInt.getRegAlim());
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		cbd.desconectar();
+		return retorno;
+	}
+	
+	
 	//-------------------------------------
 	// Alta Administrador a la BD
 	//-------------------------------------
@@ -110,7 +182,45 @@ public class FachadaPersistencia {
 		return retorno;
 	}
 
-	
+
+	//-------------------------------------
+	// Baja Alumno SOLO de la BD
+	// se usa para modificar no afecta la tabla administra
+	//-------------------------------------
+	public boolean bajaAlumnoSoloBD(int CI) {
+		
+		boolean retorno = false;
+		PreparedStatement ps = null;
+		Connection con = null;
+		int cantidadFilas = 0;
+		
+		con = cbd.conectar();
+		String sql =  "DELETE FROM p2pruebas01.alumnos where CI = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, CI);
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		sql =  "DELETE FROM p2pruebas01.aluinterno where CI = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, CI);
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		cbd.desconectar();
+
+		return retorno;
+	}
+
 	
 	//-------------------------------------
 	// Baja Administrador de la BD
@@ -196,6 +306,10 @@ public class FachadaPersistencia {
 					Interno aluInt = new Interno(1, "", "");
 					aluInt.setCi(rs.getInt("ci"));
 					aluInt.setNombre(rs.getString("nombre"));
+					aluInt.setEdad(rs.getInt("edad"));
+					aluInt.setDireccion(rs.getString("direccion"));
+					aluInt.setCuotaMensual(rs.getFloat("cuotaMensual"));
+					aluInt.setCuotaReal(rs.getFloat("cuotaReal"));
 					aluInt.setRegAlim(rs.getString("regalim"));
 					hmInt.put(aluInt.getCi(), aluInt);
 			}
