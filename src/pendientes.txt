@@ -3,9 +3,7 @@ Hecho:
 - fachada_logica
 - CRUD para Administradores (pantallas Win)
 - Pantalla para relacionar administradores con alumnos (desde crud administradores)
-
-Falta:
-- CRUD para Alumnos
+- CRUD para Alumnos HECHO
 - Pantalla para imprimir control
 - Utilizar BDatos en la fachada (rama persistenciaV1)
     . inicializarConBD - HECHO
@@ -15,8 +13,9 @@ Falta:
     . agregar admContolaAlu - HECHO
     . eliminar ACU - HECHO
     . grillaAlumnos HECHO
+
+Falta:
      
     . calculo de cuota real
     . imprimir control
     
-    . seguir....
