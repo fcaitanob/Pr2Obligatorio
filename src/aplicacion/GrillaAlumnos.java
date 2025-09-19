@@ -30,6 +30,7 @@ public class GrillaAlumnos extends JFrame {
 	    modelo.setRowCount(0); // limpiar la tabla
 	    String tipoAlumno = null;
 	    
+	    // cargo variable para diferenciar al momento de modificar si es interno o externo
 	    for (Integer ci : als.getTablaAlumnos().keySet()) {
             if (fl.getAlumnos().obtiene(ci) instanceof Interno) {
             	tipoAlumno = "Interno";
@@ -52,7 +53,8 @@ public class GrillaAlumnos extends JFrame {
 
         
         // Botón de alta y de refrescar
-        JButton btnNuevoAlu = new JButton("Nuevo Alumno");
+        JButton btnNuevoAluInt = new JButton("Nuevo Interno");
+        JButton btnNuevoAluExt = new JButton("Nuevo Externo");
         JButton btnActualizar = new JButton("Actualizar");
                
         
@@ -73,7 +75,8 @@ public class GrillaAlumnos extends JFrame {
         //boton actualizar y nuevo ajustado en otro panel
         JPanel panelActualizar = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
         panelActualizar.add(btnActualizar);
-        panelActualizar.add(btnNuevoAlu);
+        panelActualizar.add(btnNuevoAluInt);
+        panelActualizar.add(btnNuevoAluExt);
         panelFiltroSuperior.add(panelActualizar, BorderLayout.EAST);
         
         this.add(panelFiltroSuperior, BorderLayout.NORTH); // agrega en el objeto grilla
@@ -146,16 +149,12 @@ public class GrillaAlumnos extends JFrame {
         });
         
         // Detectar clic en boton de alta
-        btnNuevoAlu.addActionListener(new ActionListener() {
+        btnNuevoAluInt.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		//JOptionPane.showMessageDialog(null, "Alta de nuevo administrador ");
-                ///////////////// modificar esto //////////////////
-        		new PantallaAltaAdministrador(
+        		new PantallaAltaInterno(
                         GrillaAlumnos.this, // lo paso para armar pantalla modal
                         fl
                     ).setVisible(true);                
-                //actualiza luego del cierre de pantalla modal
-                // de modificación del administrador
                 cargarDatosDesdeCeroEnGrilla(fl, modelo); 
         		
             }
