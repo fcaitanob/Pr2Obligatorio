@@ -22,7 +22,7 @@ public class FachadaPersistencia {
 	
 
 	//-------------------------------------
-	// Administradores desde la BD
+	// Alta Administrador a la BD
 	//-------------------------------------
 	public boolean altaAdministradorBD(Administrador a) {
 		
@@ -49,6 +49,109 @@ public class FachadaPersistencia {
 	}
 
 	
+	public boolean asignarAlumnoAAdministradorBD(int ciAlumno, int ciAdmin, LocalDate fi, LocalDate ff) {
+		
+		boolean retorno = false;
+		PreparedStatement ps = null;
+		Connection con = null;
+		int cantidadFilas = 0;
+		
+		con = cbd.conectar();
+		//INSERT INTO p2pruebas01.administra (`cialumno`, `ciadmin`, `FechaInicio`, `FechaFin`) VALUES ('11111111', '99999999', '2024-12-23', '2025-12-23');
+
+		String sql =  "INSERT INTO p2pruebas01.administra";
+		sql += "(cialumno, ciadmin, FechaInicio, FechaFin) ";
+		sql += "VALUES (?, ?, ?, ?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, ciAlumno);
+			ps.setInt(2, ciAdmin);
+			ps.setDate(3, java.sql.Date.valueOf(fi));
+			ps.setDate(4, java.sql.Date.valueOf(ff));
+			
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		cbd.desconectar();
+
+		return retorno;
+	}
+
+
+	
+	
+	
+	
+	//-------------------------------------
+	// Baja Administrador SOLO de la BD
+	// se usa para modificar no afecta la tabla administra
+	//-------------------------------------
+	public boolean bajaAdministradorSoloBD(int CI) {
+		
+		boolean retorno = false;
+		PreparedStatement ps = null;
+		Connection con = null;
+		int cantidadFilas = 0;
+		
+		con = cbd.conectar();
+		String sql =  "DELETE FROM p2pruebas01.administradores where CI = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, CI);
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		cbd.desconectar();
+
+		return retorno;
+	}
+
+	
+	
+	//-------------------------------------
+	// Baja Administrador de la BD
+	//-------------------------------------
+	public boolean bajaAdministradorBD(int CI) {
+		
+		boolean retorno = false;
+		PreparedStatement ps = null;
+		Connection con = null;
+		int cantidadFilas = 0;
+		
+		con = cbd.conectar();
+		String sql =  "DELETE FROM p2pruebas01.administradores where CI = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, CI);
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		cbd.desconectar();
+
+		ps = null;
+		con = null;
+		cantidadFilas = 0;
+		
+		con = cbd.conectar();
+		sql =  "DELETE FROM p2pruebas01.administra where ciadmin = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, CI);
+			cantidadFilas = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		cbd.desconectar();
+		
+		
+		return retorno;
+	}
 	
 	
 	//-------------------------------------

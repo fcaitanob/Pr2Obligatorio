@@ -10,4 +10,7 @@ Falta:
 - Utilizar BDatos en la fachada (rama persistenciaV1)
     . inicializarConBD - HECHO
     . altaAdministradorBD - HECHO
+    . bajaAdministradorBD - HECHO
+    . modificarAdministradorBD - HECHO se hace con bajaSolo y alta
+    . agregar admContolaAlu - HECHO
     . seguir....

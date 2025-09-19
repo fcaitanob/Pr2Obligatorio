@@ -49,7 +49,7 @@ public class PantallaModAdministrador extends JDialog {
                 // Actualizamos datos del administrador
                 admin.setComentarioAdm(txtComentario.getText());
                 // para modificar hago baja y alta
-                fl.bajaAdministrador(admin.getCi());
+                fl.bajaAdministradorSolo(ci);
                 fl.altaAdministrador(admin);
 
                 dispose();

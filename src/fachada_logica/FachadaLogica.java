@@ -121,8 +121,41 @@ public class FachadaLogica {
         return administradores.consulta(ci);
     }
 
-    public void bajaAdministrador(int ci) {
+
+    // Se usa para modificar un administrador
+    // dando de baja el registro viejo y luego (en otro método) el alta
+    // solo borra el administrador y no borra los registros de AdmControlaAlu
+    public void bajaAdministradorSolo(int ci) {
         administradores.baja(ci);
+        fp.bajaAdministradorSoloBD(ci);
+        
+    }
+
+    
+    
+    public void bajaAdministrador(int ci) {
+    	ArrayList<AdmControlaAlu> alACA = new ArrayList<>();
+    	ArrayList<Alumno> alAlu = new ArrayList<>();
+    	alACA = administradores.obtiene(ci).getSecAdmControlaAlu();
+    	for (int i=alACA.size(); i>0; i--) {
+    		if(alACA.get(i-1).getAdm().getCi()==ci) { //si es el administrador guardo el alumno y borro el admControlaAlu
+    			alAlu.add(alACA.get(i-1).getAlu());
+    			alACA.remove(i-1);
+    		}
+    	}
+        administradores.baja(ci);
+        // baja de admControlaAlu de los alumnos
+        for (int i=alAlu.size(); i>0; i--) {
+        	alACA = alAlu.get(i-1).getSecAdmControlaAlu();
+        	for (int j=alACA.size(); j>0; j--) {
+        		if(alACA.get(j-1).getAdm().getCi()==ci) {
+        			alACA.remove(j-1);
+        		}
+        	}
+        }
+        
+        fp.bajaAdministradorBD(ci);
+        
     }
 
     public void mostrarAdministradores() {
@@ -148,6 +181,7 @@ public class FachadaLogica {
         		&& alumno.getSecAdmControlaAlu().size() < Alumno.MAX_ADMINISTRADOR) {
             admin.agregarAdmControlaAlu(c);
             alumno.agregarAdmControlaAlu(c);
+            fp.asignarAlumnoAAdministradorBD(ciAlumno, ciAdmin, fi, ff);
             retorno = true;
         } else {
             System.out.println("No se pudo asignar: administrador inexistente, alumno inexistente o límite alcanzado.");
