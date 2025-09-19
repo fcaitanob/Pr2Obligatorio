@@ -9,6 +9,18 @@ public class Externo extends Alumno {
         this.hobby = hobby;
     }
 
+    public Externo(int ci, String nombre, int edad, String dir, float cuotaMensual, float cuotaReal, String hobby) {
+        super(ci, nombre);
+        super.setEdad(edad);
+        super.setDireccion(dir);
+        super.setCuotaMensual(cuotaMensual);
+        super.setCuotaReal(cuotaReal);
+        this.hobby = hobby;
+    }
+
+    
+    
+    
     public String getHobby() {
         return hobby;
     }

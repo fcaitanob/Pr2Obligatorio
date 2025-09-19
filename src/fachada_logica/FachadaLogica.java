@@ -103,6 +103,13 @@ public class FachadaLogica {
         fp.altaAluIntBD((Interno) a);
     }
 
+    public void altaAlumnoExterno(int ci, String nombre, int edad, String dir, float cuotaMensual, float cuotaReal, String hobby) {
+        Alumno a = new Externo(ci, nombre, edad, dir, cuotaMensual, cuotaReal, hobby);
+        alumnos.alta(a);
+        fp.altaAluExtBD((Externo) a);
+    }
+
+    
     
 	//----------------------------------
     // Operaciones con administradores

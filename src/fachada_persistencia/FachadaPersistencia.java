@@ -92,6 +92,48 @@ public class FachadaPersistencia {
 		return retorno;
 	}
 	
+	//-------------------------------------
+	// Alta Alumno Externo en la BD
+	//-------------------------------------
+	public boolean altaAluExtBD(Externo aluExt) {
+		
+		boolean retorno = false;
+		PreparedStatement ps = null;
+		Connection con = null;
+		int cantidadFilas = 0;
+		
+		con = cbd.conectar();
+		String sql =  "INSERT INTO p2pruebas01.alumnos (CI, nombre, edad, direccion, cuotaMensual, cuotaReal) VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, aluExt.getCi());
+			ps.setString(2, aluExt.getNombre());
+			ps.setInt(3, aluExt.getEdad());
+			ps.setString(4, aluExt.getDireccion());
+			ps.setFloat(5, aluExt.getCuotaMensual());
+			ps.setFloat(6,  aluExt.getCuotaReal());
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		sql =  "INSERT INTO p2pruebas01.aluexterno (CI, hobby) VALUES (?, ?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, aluExt.getCi());
+			ps.setString(2, aluExt.getHobby());
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		cbd.desconectar();
+		return retorno;
+	}
+
+	
 	
 	//-------------------------------------
 	// Alta Administrador a la BD
@@ -210,11 +252,18 @@ public class FachadaPersistencia {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, CI);
 			cantidadFilas = ps.executeUpdate();
-			retorno = (cantidadFilas == 1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
+		sql =  "DELETE FROM p2pruebas01.aluexterno where CI = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, CI);
+			cantidadFilas = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		cbd.desconectar();
 
@@ -337,6 +386,10 @@ public class FachadaPersistencia {
 					Externo aluExt = new Externo(1, "", "");
 					aluExt.setCi(rs.getInt("ci"));
 					aluExt.setNombre(rs.getString("nombre"));
+					aluExt.setEdad(rs.getInt("edad"));
+					aluExt.setDireccion(rs.getString("direccion"));
+					aluExt.setCuotaMensual(rs.getFloat("cuotaMensual"));
+					aluExt.setCuotaReal(rs.getFloat("cuotaReal"));
 					aluExt.setHobby(rs.getString("hobby"));
 					hmExt.put(aluExt.getCi(), aluExt);
 			}

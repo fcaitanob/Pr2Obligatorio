@@ -112,6 +112,13 @@ public class GrillaAlumnos extends JFrame {
 	                            ci
 	                        ).setVisible(true);                
                     }
+                    if (tabla.getValueAt(fila, 2)=="Externo") {
+	                    new PantallaModExterno(
+	                            GrillaAlumnos.this, // lo paso para armar pantalla modal
+	                            fl, 
+	                            ci
+	                        ).setVisible(true);                
+                    }
                     cargarDatosDesdeCeroEnGrilla(fl, modelo); 
                 } 
                 if (columna == 4) {
