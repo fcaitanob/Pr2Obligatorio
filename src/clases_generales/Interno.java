@@ -1,5 +1,5 @@
 package clases_generales;
-
+ 
 
 public class Interno extends Alumno {
 	public static final int PORCENTAJE_DTO = 15;

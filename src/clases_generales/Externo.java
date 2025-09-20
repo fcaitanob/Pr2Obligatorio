@@ -1,5 +1,5 @@
 package clases_generales;
-
+ 
 
 public class Externo extends Alumno {
 	private String hobby;

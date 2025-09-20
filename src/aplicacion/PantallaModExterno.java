@@ -1,5 +1,5 @@
 package aplicacion;
-
+ 
 
 import javax.swing.*;
 import java.awt.*;

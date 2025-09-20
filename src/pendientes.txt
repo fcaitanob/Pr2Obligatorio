@@ -17,5 +17,5 @@ Hecho:
 
 Falta:
      
-    . imprimir control
+    . imprimir control 
     
