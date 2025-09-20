@@ -73,6 +73,17 @@ public class FachadaLogica {
     	// recorro el hashmap y calculo la cuota para cada alumno.
     	for(Alumno entrada : alumnos.getTablaAlumnos().values()) {
     		entrada.calculoCuota();
+    		fp.bajaAlumnoSoloBD(entrada.getCi());
+            if (entrada instanceof Interno) {
+            	//tipoAlumno = "Interno";
+            	fp.altaAluIntBD((Interno) entrada);
+            } 
+            if (entrada instanceof Externo) {
+            	//tipoAlumno = "Externo";
+            	fp.altaAluExtBD((Externo) entrada);
+            } 
+
+    		
     	}
     }
 

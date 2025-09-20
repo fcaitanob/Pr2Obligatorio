@@ -41,8 +41,13 @@ public class Externo extends Alumno {
     @Override
     public float calculoCuota() {
     	float cuota = 0;
-    	cuota = this.getCuotaMensual() * this.getEdad() / 100;
-    	this.setCuotaMensual(cuota);
+    	cuota =  this.getCuotaMensual() - (this.getCuotaMensual() * (float) (this.getEdad() / 100.0));
+    	/*
+    	System.out.println("Alumno " + this.getCi() + "multiplicando: " + (1 + this.getEdad() / 100));
+    	System.out.println("Alumno " + this.getCi() + "edad: " + this.getEdad());
+    	System.out.println("Alumno " + this.getCi() + "edad: " + (float) this.getEdad() / 100);
+    	*/
+    	this.setCuotaReal(cuota);
     	return cuota;
     }
 

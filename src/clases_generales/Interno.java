@@ -41,8 +41,8 @@ public class Interno extends Alumno {
     @Override
     public float calculoCuota() {
     	float cuota = 0;
-    	cuota = this.getCuotaMensual() * PORCENTAJE_DTO / 100;
-    	this.setCuotaMensual(cuota);
+    	cuota = this.getCuotaMensual() - (this.getCuotaMensual() * PORCENTAJE_DTO / 100);
+    	this.setCuotaReal(cuota);
     	return cuota;
     }
 

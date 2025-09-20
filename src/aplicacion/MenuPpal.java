@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.JOptionPane;
+
 import fachada_logica.FachadaLogica;
 
 public class MenuPpal {
@@ -48,6 +50,11 @@ public class MenuPpal {
         MenuItem inicializarConBDItem = new MenuItem("Inicializar con BD");
         utilidadesMenu.add(inicializarConBDItem);
 
+        MenuItem calcularCuotasTodosItem = new MenuItem("Calcular cuotas");
+        utilidadesMenu.add(calcularCuotasTodosItem);
+
+        MenuItem documentosDeControlItem = new MenuItem("Docs de control");
+        utilidadesMenu.add(documentosDeControlItem);
         
         
         // agrego menúes en el menuBar
@@ -90,6 +97,29 @@ public class MenuPpal {
                 ga.setVisible(true);
             }
         });
+
+        // Acción para calcular cuota de alumnos
+        calcularCuotasTodosItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Panel de confirmación
+                int opcion = JOptionPane.showConfirmDialog(
+                    null,
+                    "¿Está seguro de que desea calcular las cuotas?" ,
+                    "Confirmar",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+                );
+                if (opcion == JOptionPane.YES_OPTION) {
+                	fl.calcularCuotasTodos();
+                    System.out.println("Cálculo realizado");
+                } else {
+                    System.out.println("Cálculo NO realizado");
+                }
+;
+            }
+        });
+
+        
         
         // window listener para finalizar si le doy en la cruz
         frame.addWindowListener(new WindowAdapter() {

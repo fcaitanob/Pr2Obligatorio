@@ -13,9 +13,9 @@ Hecho:
     . agregar admContolaAlu - HECHO
     . eliminar ACU - HECHO
     . grillaAlumnos HECHO
+    . calculo de cuota real HECHO
 
 Falta:
      
-    . calculo de cuota real
     . imprimir control
     

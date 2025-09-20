@@ -41,7 +41,7 @@ public class PantallaModExterno extends JDialog {
         JTextField txtDir = new JTextField(aluExt.getDireccion());
         panelDatos.add(txtDir);
 
-        panelDatos.add(new JLabel("Cuota mansual:"));
+        panelDatos.add(new JLabel("Cuota mensual:"));
         JTextField txtCuotaMen = new JTextField(String.valueOf(aluExt.getCuotaMensual()));
         panelDatos.add(txtCuotaMen);
 
