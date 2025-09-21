@@ -119,7 +119,15 @@ public class MenuPpal {
             }
         });
 
-        
+
+        // Acción para abrir la grilla de controles
+        documentosDeControlItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                GrillaControles gc = new GrillaControles(fl);
+                gc.setVisible(true);
+            }
+        });
+
         
         // window listener para finalizar si le doy en la cruz
         frame.addWindowListener(new WindowAdapter() {

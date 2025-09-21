@@ -14,8 +14,6 @@ Hecho:
     . eliminar ACU - HECHO
     . grillaAlumnos HECHO
     . calculo de cuota real HECHO
+	. imprimir control HECHO
 
-Falta:
-     
-    . imprimir control 
     
