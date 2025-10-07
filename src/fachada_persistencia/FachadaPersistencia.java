@@ -157,6 +157,15 @@ public class FachadaPersistencia {
 			e.printStackTrace();
 		}
 		
+		sql =  "INSERT INTO personas (CI) VALUES (?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, a.getCi());
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		cbd.desconectar();
 		return retorno;
