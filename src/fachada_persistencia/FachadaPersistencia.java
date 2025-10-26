@@ -33,7 +33,7 @@ public class FachadaPersistencia {
 		//DELETE FROM p2pruebas01.administra WHERE (cialumno = 111) and (ciadmin = 99999999);
 
 
-		String sql =  "DELETE FROM p2pruebas01.administra ";
+		String sql =  "DELETE FROM administra ";
 		sql += "WHERE cialumno = ? and ciadmin = ?";
 		try {
 			ps = con.prepareStatement(sql);
@@ -62,7 +62,7 @@ public class FachadaPersistencia {
 		int cantidadFilas = 0;
 		
 		con = cbd.conectar();
-		String sql =  "INSERT INTO p2pruebas01.alumnos (CI, nombre, edad, direccion, cuotaMensual, cuotaReal) VALUES (?, ?, ?, ?, ?, ?)";
+		String sql =  "INSERT INTO alumnos (CI, nombre, edad, direccion, cuotaMensual, cuotaReal) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, aluInt.getCi());
@@ -77,7 +77,7 @@ public class FachadaPersistencia {
 			e.printStackTrace();
 		}
 		
-		sql =  "INSERT INTO p2pruebas01.aluinterno (CI, regAlim) VALUES (?, ?)";
+		sql =  "INSERT INTO aluinterno (CI, regAlim) VALUES (?, ?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, aluInt.getCi());
@@ -87,6 +87,18 @@ public class FachadaPersistencia {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		sql =  "INSERT INTO personas (CI) VALUES (?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, aluInt.getCi());
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		
 		
 		cbd.desconectar();
 		return retorno;
@@ -103,7 +115,7 @@ public class FachadaPersistencia {
 		int cantidadFilas = 0;
 		
 		con = cbd.conectar();
-		String sql =  "INSERT INTO p2pruebas01.alumnos (CI, nombre, edad, direccion, cuotaMensual, cuotaReal) VALUES (?, ?, ?, ?, ?, ?)";
+		String sql =  "INSERT INTO alumnos (CI, nombre, edad, direccion, cuotaMensual, cuotaReal) VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, aluExt.getCi());
@@ -118,7 +130,7 @@ public class FachadaPersistencia {
 			e.printStackTrace();
 		}
 		
-		sql =  "INSERT INTO p2pruebas01.aluexterno (CI, hobby) VALUES (?, ?)";
+		sql =  "INSERT INTO aluexterno (CI, hobby) VALUES (?, ?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, aluExt.getCi());
@@ -128,6 +140,19 @@ public class FachadaPersistencia {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+		sql =  "INSERT INTO personas (CI) VALUES (?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, aluExt.getCi());
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+		
 		
 		cbd.desconectar();
 		return retorno;
@@ -146,7 +171,7 @@ public class FachadaPersistencia {
 		int cantidadFilas = 0;
 		
 		con = cbd.conectar();
-		String sql =  "INSERT INTO p2pruebas01.administradores (CI, Comentario) VALUES (?, ?)";
+		String sql =  "INSERT INTO administradores (CI, Comentario) VALUES (?, ?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, a.getCi());
@@ -180,9 +205,9 @@ public class FachadaPersistencia {
 		int cantidadFilas = 0;
 		
 		con = cbd.conectar();
-		//INSERT INTO p2pruebas01.administra (`cialumno`, `ciadmin`, `FechaInicio`, `FechaFin`) VALUES ('11111111', '99999999', '2024-12-23', '2025-12-23');
+		//INSERT INTO p2pruebas01.administra (cialumno, ciadmin, FechaInicio, FechaFin) VALUES ('11111111', '99999999', '2024-12-23', '2025-12-23');
 
-		String sql =  "INSERT INTO p2pruebas01.administra";
+		String sql =  "INSERT INTO administra";
 		sql += "(cialumno, ciadmin, FechaInicio, FechaFin) ";
 		sql += "VALUES (?, ?, ?, ?)";
 		try {
@@ -219,7 +244,7 @@ public class FachadaPersistencia {
 		int cantidadFilas = 0;
 		
 		con = cbd.conectar();
-		String sql =  "DELETE FROM p2pruebas01.administradores where CI = ?";
+		String sql =  "DELETE FROM administradores where CI = ?";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, CI);
@@ -230,6 +255,21 @@ public class FachadaPersistencia {
 		}
 		cbd.desconectar();
 
+		
+		con = cbd.conectar();
+		sql =  "DELETE FROM personas where CI = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, CI);
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		cbd.desconectar();
+
+		
+		
 		return retorno;
 	}
 
@@ -246,7 +286,7 @@ public class FachadaPersistencia {
 		int cantidadFilas = 0;
 		
 		con = cbd.conectar();
-		String sql =  "DELETE FROM p2pruebas01.alumnos where CI = ?";
+		String sql =  "DELETE FROM alumnos where CI = ?";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, CI);
@@ -256,7 +296,7 @@ public class FachadaPersistencia {
 			e.printStackTrace();
 		}
 		
-		sql =  "DELETE FROM p2pruebas01.aluinterno where CI = ?";
+		sql =  "DELETE FROM aluinterno where CI = ?";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, CI);
@@ -265,7 +305,7 @@ public class FachadaPersistencia {
 			e.printStackTrace();
 		}
 		
-		sql =  "DELETE FROM p2pruebas01.aluexterno where CI = ?";
+		sql =  "DELETE FROM aluexterno where CI = ?";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, CI);
@@ -273,6 +313,18 @@ public class FachadaPersistencia {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+		
+		sql =  "DELETE FROM personas where CI = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, CI);
+			cantidadFilas = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		
 		
 		cbd.desconectar();
 
@@ -291,7 +343,7 @@ public class FachadaPersistencia {
 		int cantidadFilas = 0;
 		
 		con = cbd.conectar();
-		String sql =  "DELETE FROM p2pruebas01.administradores where CI = ?";
+		String sql =  "DELETE FROM administradores where CI = ?";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, CI);
@@ -307,7 +359,7 @@ public class FachadaPersistencia {
 		cantidadFilas = 0;
 		
 		con = cbd.conectar();
-		sql =  "DELETE FROM p2pruebas01.administra where ciadmin = ?";
+		sql =  "DELETE FROM administra where ciadmin = ?";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, CI);
@@ -316,7 +368,19 @@ public class FachadaPersistencia {
 			e.printStackTrace();
 		}
 		cbd.desconectar();
-		
+
+		con = cbd.conectar();
+		sql =  "DELETE FROM personas where CI = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, CI);
+			cantidadFilas = ps.executeUpdate();
+			retorno = (cantidadFilas == 1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		cbd.desconectar();
+
 		
 		return retorno;
 	}
@@ -327,7 +391,7 @@ public class FachadaPersistencia {
 	//-------------------------------------
 	public HashMap<Integer, Administrador> cargaAdministradoresDesdeBD() {
 		cbd.conectar();
-		String sql = "SELECT * FROM p2pruebas01.administradores a ";
+		String sql = "SELECT * FROM administradores a ";
 		ResultSet rs = cbd.ejecutarConsulta(sql);
 		HashMap<Integer, Administrador> hmAdm = new HashMap<Integer, Administrador>();
 		try {
@@ -353,7 +417,7 @@ public class FachadaPersistencia {
 	//-------------------------------------
 	public HashMap<Integer, Alumno> cargaInternosDesdeBD() {
 		cbd.conectar();
-		String sql = "SELECT * FROM p2pruebas01.alumnos a "
+		String sql = "SELECT * FROM alumnos a "
 				+ "join p2pruebas01.aluinterno b "
 				+ "on a.ci = b.ci "
 				+ "order by a.ci ";
@@ -384,7 +448,7 @@ public class FachadaPersistencia {
 	//-------------------------------------
 	public HashMap<Integer, Alumno> cargaExternosDesdeBD() {
 		cbd.conectar();
-		String sql = "SELECT * FROM p2pruebas01.alumnos a "
+		String sql = "SELECT * FROM alumnos a "
 				+ "join p2pruebas01.aluexterno b "
 				+ "on a.ci = b.ci "
 				+ "order by a.ci ";
@@ -417,7 +481,7 @@ public class FachadaPersistencia {
 		cbd.conectar();
 		int aluCI = 0;
 		int admCI = 0;
-		String sql = "SELECT * FROM p2pruebas01.administra a "
+		String sql = "SELECT * FROM administra a "
 				+ "order by a.cialumno ";
 		ResultSet rs = cbd.ejecutarConsulta(sql);
 		ArrayList<AdmControlaAlu> acaList = new ArrayList<AdmControlaAlu>();
